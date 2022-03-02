@@ -14,7 +14,7 @@ public class Document {
     @Column(name = "str_name")
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Person person;
 
     public Document() {
@@ -37,4 +37,11 @@ public class Document {
     }
 
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }

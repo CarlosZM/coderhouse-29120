@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
@@ -73,25 +72,31 @@ public class Application implements CommandLineRunner {
         Person person = new Person();
         person.setAge(30);
         person.setName("Carlos");
-        Document document=new Document();
-        document.setName("Documento");
-
-        person.setDocumentList(Collections.singletonList(
-                this.documentRepository.save(document)
-        ));
 
         Person persistedPerson = this.personRepository.saveAndFlush(person);
+
+        Document document = new Document();
+        document.setName("Documento");
+        document.setPerson(person);
+
+        this.documentRepository.save(document);
 
         System.out.printf("System has added a record in 'tbl_person' table with id %d %n", persistedPerson.getId());
 
         person = new Person();
         person.setAge(20);
         person.setName("Juan");
-        document=new Document();
+
+        this.personRepository.saveAndFlush(person);
+
+
+        document = new Document();
         document.setName("Documento1");
-        person.setDocumentList(Collections.singletonList(
-                this.documentRepository.save(document)
-        ));
+        document.setPerson(person);
+
+        this.documentRepository.save(document);
+
+        this.documentRepository.save(document);
 
         persistedPerson = this.personRepository.saveAndFlush(person);
 

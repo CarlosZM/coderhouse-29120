@@ -18,7 +18,7 @@ public class Person {
     @Column(name = "int_age")
     private Integer age;
 
-    @OneToMany
+    @OneToMany(mappedBy = "person")
     private List<Document> documentList;
 
     public Person() {
