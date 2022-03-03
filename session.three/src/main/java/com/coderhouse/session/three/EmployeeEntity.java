@@ -1,6 +1,8 @@
 package com.coderhouse.session.three;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Table
@@ -11,6 +13,7 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 3, max = 20)
     private String firstName;
 
     private String lastName;
