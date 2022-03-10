@@ -52,14 +52,6 @@ public class JwtConfiguration {
         return http.build();
     }
 
-    /*
-
-        @Bean
-        UserDetailsService users(DataSource dataSource) {
-            return new JdbcUserDetailsManager(dataSource);
-        }
-    */
-
     @Bean
     UserDetailsService users() {
         return new InMemoryUserDetailsManager(
