@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "dade9e97-0f91-4c10-8c5e-4d5c425de292",
+		"name": "Six Session - Transactional",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Base",
+			"item": [
+				{
+					"name": "Get All Person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/base/person",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"base",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/base/person/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"base",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Carlos\",\r\n    \"age\": 27\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/base/person",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"base",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One Person",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"name\":\"juan\",\r\n    \"age\":33\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/base/person",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"base",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Carlos\",\r\n    \"lastName\":\"Zerga\",\r\n    \"birthDate\":\"1994-04-14T01:30:33\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/base/person/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"base",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Simple Transaction",
+			"item": [
+				{
+					"name": "throw exception but rollback is not executed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"napoleon\",\r\n        \"age\": 30\r\n    },\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"kamui\",\r\n        \"age\": 35\r\n    },\r\n    {\r\n        \"name\": \"tripode\",\r\n        \"age\": 34\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactional/person/without",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactional",
+								"person",
+								"without"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "throw exception but rollback is executed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"napoleon\",\r\n        \"age\": 30\r\n    },\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"kamui\",\r\n        \"age\": 35\r\n    },\r\n    {\r\n        \"name\": \"tripode\",\r\n        \"age\": 34\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactional/person/with",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactional",
+								"person",
+								"with"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "throw exception but rollback is not executed due to diffenrent handling exception",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"napoleon\",\r\n        \"age\": 30\r\n    },\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"kamui\",\r\n        \"age\": 35\r\n    },\r\n    {\r\n        \"name\": \"tripode\",\r\n        \"age\": 34\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactional/person/with",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactional",
+								"person",
+								"with"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "throw exception but rollback is executed but with multiple transactions addition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"napoleon\",\r\n        \"age\": 30\r\n    },\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"kamui\",\r\n        \"age\": 35\r\n    },\r\n    {\r\n        \"name\": \"tripode\",\r\n        \"age\": 34\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactional/person/with",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactional",
+								"person",
+								"with"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "throw exception but rollback is executed but with multiple transactions addition Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"napoleon\",\r\n        \"age\": 30\r\n    },\r\n    {\r\n        \"name\": \"lucero\",\r\n        \"age\": 15\r\n    },\r\n    {\r\n        \"name\": \"kamui\",\r\n        \"age\": 35\r\n    },\r\n    {\r\n        \"name\": \"tripode\",\r\n        \"age\": 34\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactional/person/with",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactional",
+								"person",
+								"with"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
