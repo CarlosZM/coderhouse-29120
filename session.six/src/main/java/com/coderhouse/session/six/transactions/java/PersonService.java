@@ -1,4 +1,4 @@
-package com.coderhouse.session.six;
+package com.coderhouse.session.six.transactions.java;
 
 import com.coderhouse.session.six.base.Person;
 import com.coderhouse.session.six.base.PersonRepository;
