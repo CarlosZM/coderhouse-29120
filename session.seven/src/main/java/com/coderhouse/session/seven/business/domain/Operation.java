@@ -1,6 +1,8 @@
-package com.coderhouse.session.seven;
+package com.coderhouse.session.seven.business.domain;
 
-public class OperationResult {
+import java.util.Objects;
+
+public class Operation {
 
     private Double left;
 
@@ -8,16 +10,13 @@ public class OperationResult {
 
     private Double right;
 
-    private Double result;
-
-    public OperationResult() {
+    public Operation() {
     }
 
-    public OperationResult(Double left, Operator operator, Double right, Double result) {
+    public Operation(Double left, Operator operator, Double right) {
         this.left = left;
         this.operator = operator;
         this.right = right;
-        this.result = result;
     }
 
     public Double getLeft() {
@@ -44,11 +43,16 @@ public class OperationResult {
         this.right = right;
     }
 
-    public Double getResult() {
-        return result;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Operation operation = (Operation) o;
+        return Objects.equals(left, operation.left) && operator == operation.operator && Objects.equals(right, operation.right);
     }
 
-    public void setResult(Double result) {
-        this.result = result;
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, operator, right);
     }
 }

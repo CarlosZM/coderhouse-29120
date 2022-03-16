@@ -1,5 +1,12 @@
-package com.coderhouse.session.seven;
+package com.coderhouse.session.seven.business;
 
+import com.coderhouse.session.seven.business.domain.Operation;
+import com.coderhouse.session.seven.business.domain.OperationResult;
+import com.coderhouse.session.seven.business.domain.Operator;
+import com.coderhouse.session.seven.business.exceptions.InvalidMathematicalOperationResultException;
+import com.coderhouse.session.seven.business.exceptions.MathematicalOperationNotSupportedException;
+import com.coderhouse.session.seven.business.exceptions.MathematicalOperationNotValidException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,7 +49,7 @@ public class CalculatorService {
 
         Double realResult = this.calculate(previousOperation).getResult();
 
-        if (operation.getResult().equals(realResult)) {
+        if (!operation.getResult().equals(realResult)) {
             throw new InvalidMathematicalOperationResultException(String.format("We were expecting as a result %f, but you gave to us %f", realResult, operation.getResult()));
         }
     }

@@ -1,4 +1,4 @@
-package com.coderhouse.session.seven;
+package com.coderhouse.session.seven.business.domain;
 
 public enum Operator {
     ADD,

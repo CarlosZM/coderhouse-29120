@@ -1,5 +1,11 @@
-package com.coderhouse.session.seven;
+package com.coderhouse.session.seven.controller;
 
+import com.coderhouse.session.seven.business.CalculatorService;
+import com.coderhouse.session.seven.business.exceptions.InvalidMathematicalOperationResultException;
+import com.coderhouse.session.seven.business.exceptions.MathematicalOperationNotSupportedException;
+import com.coderhouse.session.seven.business.exceptions.MathematicalOperationNotValidException;
+import com.coderhouse.session.seven.business.domain.Operation;
+import com.coderhouse.session.seven.business.domain.OperationResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

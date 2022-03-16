@@ -1,6 +1,8 @@
 package com.coderhouse.session.seven;
 
 
+import com.coderhouse.session.seven.business.domain.Operation;
+import com.coderhouse.session.seven.business.domain.Operator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
